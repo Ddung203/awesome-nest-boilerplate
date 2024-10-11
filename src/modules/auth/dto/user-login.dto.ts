@@ -1,8 +1,8 @@
-import { EmailField, StringField } from '../../../decorators';
+import { PhoneField, StringField } from "../../../decorators";
 
 export class UserLoginDto {
-  @EmailField()
-  readonly email!: string;
+  @PhoneField()
+  readonly phoneNumber!: string;
 
   @StringField()
   readonly password!: string;

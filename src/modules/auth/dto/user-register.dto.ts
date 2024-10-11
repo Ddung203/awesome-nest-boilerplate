@@ -1,16 +1,8 @@
-import {
-  EmailField,
-  PasswordField,
-  PhoneFieldOptional,
-  StringField,
-} from '../../../decorators';
+import { EmailField, PasswordField, PhoneField, StringField } from "../../../decorators";
 
 export class UserRegisterDto {
   @StringField()
-  readonly firstName!: string;
-
-  @StringField()
-  readonly lastName!: string;
+  readonly fullName!: string;
 
   @EmailField()
   readonly email!: string;
@@ -18,6 +10,6 @@ export class UserRegisterDto {
   @PasswordField({ minLength: 6 })
   readonly password!: string;
 
-  @PhoneFieldOptional()
-  phone?: string;
+  @PhoneField()
+  readonly phoneNumber!: string;
 }

@@ -1,50 +1,44 @@
-import { AbstractDto } from '../../../common/dto/abstract.dto';
-import { RoleType } from '../../../constants';
+import { AbstractDto } from "../../../common/dto/abstract.dto";
+import { RoleType } from "../../../constants";
 import {
   BooleanFieldOptional,
   EmailFieldOptional,
   EnumFieldOptional,
+  NumberFieldOptional,
   PhoneFieldOptional,
   StringFieldOptional,
-} from '../../../decorators';
-import type { UserEntity } from '../user.entity';
-
-// TODO, remove this class and use constructor's second argument's type
-export type UserDtoOptions = Partial<{ isActive: boolean }>;
+} from "../../../decorators";
+import type { UserEntity } from "../user.entity";
 
 export class UserDto extends AbstractDto {
   @StringFieldOptional({ nullable: true })
-  firstName?: string | null;
+  fullName?: string | null;
 
-  @StringFieldOptional({ nullable: true })
-  lastName?: string | null;
-
-  @StringFieldOptional({ nullable: true })
-  username!: string;
-
-  @EnumFieldOptional(() => RoleType)
-  role?: RoleType;
+  @PhoneFieldOptional({ nullable: true })
+  phoneNumber?: string | null;
 
   @EmailFieldOptional({ nullable: true })
   email?: string | null;
 
+  @EnumFieldOptional(() => RoleType, { default: RoleType.USER })
+  role?: RoleType;
+
   @StringFieldOptional({ nullable: true })
-  avatar?: string | null;
+  password?: string | null;
 
-  @PhoneFieldOptional({ nullable: true })
-  phone?: string | null;
+  @NumberFieldOptional({ default: 0 })
+  credit?: number | null;
 
-  @BooleanFieldOptional()
-  isActive?: boolean;
+  @BooleanFieldOptional({ default: false })
+  isBanned?: boolean | null;
 
-  constructor(user: UserEntity, options?: UserDtoOptions) {
+  constructor(user: UserEntity) {
     super(user);
-    this.firstName = user.firstName;
-    this.lastName = user.lastName;
+    this.fullName = user.fullName;
+    this.phoneNumber = user.phoneNumber;
+    this.password = "";
     this.role = user.role;
     this.email = user.email;
-    this.avatar = user.avatar;
-    this.phone = user.phone;
-    this.isActive = options?.isActive;
+    this.isBanned = user.isBanned;
   }
 }

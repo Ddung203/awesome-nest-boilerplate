@@ -14,9 +14,9 @@
     "esModuleInterop": true,
     "allowUnreachableCode": false,
     "noImplicitReturns": true,
-//    "exactOptionalPropertyTypes": true,
+    //    "exactOptionalPropertyTypes": true,
     "noImplicitThis": true,
-//    "noPropertyAccessFromIndexSignature": true,
+    //    "noPropertyAccessFromIndexSignature": true,
     "noUnusedParameters": true,
     "noUnusedLocals": true,
     "strictPropertyInitialization": true,
@@ -30,11 +30,6 @@
     "incremental": true,
     "strictNullChecks": true
   },
-  "include": [
-    "src/**/*"
-  ],
-  "exclude": [
-    "node_modules",
-    "**/*.spec.ts"
-  ]
+  "include": ["src/**/*", "ormconfig.ts"],
+  "exclude": ["node_modules", "**/*.spec.ts"]
 }
